@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADV Trabalhista — Seus Direitos, Explicados</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0f0e0c;
+    --paper: #f5f0e8;
+    --gold: #c8923a;
+    --gold-light: #e8b96a;
+    --rust: #9b3a2a;
+    --cream: #ede8dc;
+    --muted: #6b6459;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.6;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,146,58,0.2);
+  }
+
+  .logo {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+  }
+  .logo span { color: var(--gold); }
+
+  nav { display: flex; gap: 2.5rem; align-items: center; }
+  nav a {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--ink); }
+
+  .nav-cta {
+    background: var(--gold);
+    color: white !important;
+    padding: 0.6rem 1.4rem;
+    border-radius: 2px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--rust) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+
+  .hero-left {
+    padding: 8rem 3rem 6rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    animation: fadeUp 0.9s ease both;
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 2.5rem;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 5vw, 5.2rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.8rem;
+    color: var(--ink);
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--rust);
+  }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--muted);
+    max-width: 420px;
+    margin-bottom: 3rem;
+  }
+
+  .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 1rem 2.2rem;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.25s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--rust); transform: translateY(-1px); }
+
+  .btn-ghost {
+    color: var(--ink);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: gap 0.2s;
+  }
+  .btn-ghost:hover { gap: 0.9rem; }
+  .btn-ghost::after { content: '→'; }
+
+  .hero-right {
+    background: var(--ink);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    animation: fadeIn 1.2s ease both;
+  }
+
+  /* Decorative scales of justice SVG */
+  .hero-illustration {
+    width: 340px;
+    height: 340px;
+    opacity: 0.9;
+  }
+
+  .hero-right::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; right: -80px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,146,58,0.2);
+  }
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: -60px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,146,58,0.15);
+  }
+
+  .hero-stat {
+    position: absolute;
+    bottom: 3rem; left: 3rem;
+    color: var(--paper);
+  }
+  .hero-stat-num {
+    font-family: var(--serif);
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+
+  /* ── TICKER ── */
+  .ticker {
+    background: var(--gold);
+    padding: 0.9rem 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .ticker-inner {
+    display: flex;
+    gap: 0;
+    animation: ticker 25s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker-item {
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0 3rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .ticker-item::after { content: '◆'; opacity: 0.5; font-size: 0.5rem; }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ── SERVICES / TOOLS ── */
+  .services {
+    padding: 8rem 4rem;
+  }
+
+  .section-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+    margin-bottom: 4rem;
+  }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+  }
+  .section-label::before {
+    content: '';
+    width: 2rem;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 3.5vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .section-desc {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--muted);
+    align-self: end;
+  }
+
+  /* ── TOOL TABS ── */
+  .tools-wrapper {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 0;
+    border: 1px solid rgba(0,0,0,0.1);
+    min-height: 520px;
+  }
+
+  .tools-tabs {
+    background: var(--ink);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tool-tab {
+    padding: 1.4rem 1.8rem;
+    cursor: pointer;
+    border-left: 3px solid transparent;
+    transition: all 0.2s;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .tool-tab:hover { background: rgba(255,255,255,0.05); }
+  .tool-tab.active {
+    border-left-color: var(--gold);
+    background: rgba(200,146,58,0.1);
+  }
+
+  .tool-tab-icon {
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+    display: block;
+  }
+  .tool-tab-name {
+    font-family: var(--serif);
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--paper);
+    display: block;
+    margin-bottom: 0.1rem;
+  }
+  .tool-tab-desc {
+    font-size: 0.7rem;
+    color: rgba(245,240,232,0.4);
+    letter-spacing: 0.04em;
+  }
+
+  .tools-panel {
+    background: var(--cream);
+    padding: 2.5rem 3rem;
+    display: none;
+  }
+  .tools-panel.active { display: block; }
+
+  .tool-title {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+  }
+  .tool-subtitle {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .tool-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+  .span2 { grid-column: span 2; }
+
+  /* shared form inside tool panels */
+  .t-group { margin-bottom: 0; }
+  .t-group label {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+  .t-group input,
+  .t-group select {
+    width: 100%;
+    padding: 0.75rem 0.9rem;
+    background: white;
+    border: 1px solid rgba(0,0,0,0.12);
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .t-group input:focus,
+  .t-group select:focus { border-color: var(--gold); }
+
+  .tool-btn {
+    margin-top: 1.2rem;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    padding: 0.85rem 2rem;
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .tool-btn:hover { background: var(--rust); }
+
+  /* result box inside tools */
+  .tool-result {
+    display: none;
+    margin-top: 1.5rem;
+    background: var(--ink);
+    padding: 1.4rem 1.6rem;
+  }
+  .tool-result.show { display: block; }
+  .tool-result-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+  .tool-result-value {
+    font-family: var(--serif);
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--paper);
+    margin-bottom: 0.8rem;
+  }
+  .tool-breakdown {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 0.8rem;
+    margin-top: 0.5rem;
+  }
+  .tb-item { font-size: 0.76rem; color: rgba(245,240,232,0.55); }
+  .tb-item strong { color: var(--gold-light); display: block; font-size: 0.82rem; }
+
+  /* carta output */
+  .carta-output {
+    display: none;
+    margin-top: 1.5rem;
+    background: white;
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 2rem;
+    font-size: 0.88rem;
+    line-height: 1.85;
+    color: var(--ink);
+    white-space: pre-wrap;
+    font-family: 'Georgia', serif;
+    position: relative;
+  }
+  .carta-output.show { display: block; }
+  .copy-btn {
+    position: absolute;
+    top: 0.8rem; right: 0.8rem;
+    background: var(--gold);
+    color: white;
+    border: none;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .copy-btn:hover { background: var(--rust); }
+  .copy-btn.copied { background: #3a7a3a; }
+
+  /* seguro desemprego table */
+  .sd-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 0.82rem;
+  }
+  .sd-table th {
+    background: var(--ink);
+    color: var(--gold);
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .sd-table td {
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+  }
+  .sd-table tr.highlight td { background: rgba(200,146,58,0.12); font-weight: 500; }
+
+  /* fgts info */
+  .fgts-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin-top: 1rem;
+  }
+  .fgts-card {
+    background: white;
+    border: 1px solid rgba(0,0,0,0.08);
+    padding: 1rem;
+  }
+  .fgts-card-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+  }
+  .fgts-card-val {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .fgts-card-val.gold { color: var(--gold); }
+
+  @media (max-width: 900px) {
+    .tools-wrapper { grid-template-columns: 1fr; }
+    .tools-tabs { flex-direction: row; overflow-x: auto; }
+    .tool-tab { min-width: 130px; border-left: none; border-bottom: 3px solid transparent; }
+    .tool-tab.active { border-bottom-color: var(--gold); border-left-color: transparent; }
+    .tools-panel { padding: 1.5rem; }
+    .tool-grid, .tool-grid-3 { grid-template-columns: 1fr; }
+    .span2 { grid-column: span 1; }
+    .tool-breakdown { grid-template-columns: 1fr; }
+    .fgts-info-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── CALCULATOR SECTION ── */
+  .calc-section {
+    background: var(--ink);
+    padding: 8rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .calc-left { color: var(--paper); }
+  .calc-left .section-label::before { background: var(--gold); }
+  .calc-left h2 { color: var(--paper); }
+  .calc-left .section-desc { color: rgba(245,240,232,0.6); margin-top: 1.5rem; }
+
+  .calc-box {
+    background: var(--cream);
+    padding: 3rem;
+  }
+
+  .calc-box h3 {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--ink);
+  }
+
+  .form-group { margin-bottom: 1.4rem; }
+  .form-group label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    background: white;
+    border: 1px solid rgba(0,0,0,0.1);
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus,
+  .form-group select:focus { border-color: var(--gold); }
+
+  .calc-btn {
+    width: 100%;
+    background: var(--gold);
+    color: white;
+    border: none;
+    padding: 1rem;
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.25s;
+    margin-top: 0.5rem;
+  }
+  .calc-btn:hover { background: var(--rust); }
+
+  .calc-result {
+    display: none;
+    margin-top: 1.8rem;
+    padding: 1.5rem;
+    background: var(--ink);
+  }
+  .calc-result.show { display: block; }
+  .calc-result-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .calc-result-value {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--paper);
+  }
+  .calc-result-breakdown {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  .breakdown-item {
+    font-size: 0.78rem;
+    color: rgba(245,240,232,0.6);
+  }
+  .breakdown-item strong { color: var(--gold-light); display: block; }
+
+  /* ── FAQ ── */
+  .faq-section {
+    padding: 8rem 4rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .faq-section .section-header {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 4rem;
+  }
+
+  .faq-item {
+    border-top: 1px solid rgba(0,0,0,0.1);
+    padding: 1.8rem 0;
+  }
+
+  .faq-question {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    user-select: none;
+  }
+
+  .faq-icon {
+    width: 28px; height: 28px;
+    background: var(--ink);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    transition: background 0.2s, transform 0.3s;
+  }
+  .faq-item.open .faq-icon { background: var(--gold); transform: rotate(45deg); }
+
+  .faq-answer {
+    font-size: 0.92rem;
+    line-height: 1.85;
+    color: var(--muted);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+  }
+  .faq-item.open .faq-answer {
+    max-height: 400px;
+    padding-top: 1.2rem;
+  }
+
+  /* ── CTA BANNER ── */
+  .cta-banner {
+    background: var(--rust);
+    padding: 6rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-banner::before {
+    content: 'SEUS DIREITOS';
+    position: absolute;
+    font-family: var(--serif);
+    font-size: 12rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.04);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  .cta-banner h2 {
+    color: white;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    margin-bottom: 1.2rem;
+  }
+  .cta-banner p {
+    color: rgba(255,255,255,0.75);
+    font-size: 1rem;
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+  }
+  .btn-white {
+    background: white;
+    color: var(--rust);
+    padding: 1rem 2.5rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    padding: 4rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 4rem;
+    color: rgba(245,240,232,0.5);
+    font-size: 0.85rem;
+    line-height: 1.9;
+  }
+
+  .footer-brand .logo { font-size: 1.2rem; margin-bottom: 1rem; display: block; }
+  .footer-brand p { max-width: 280px; }
+
+  footer h4 {
+    font-family: var(--serif);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--paper);
+    margin-bottom: 1.2rem;
+  }
+
+  footer a {
+    display: block;
+    color: rgba(245,240,232,0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  footer a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 1.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: rgba(245,240,232,0.3);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    header { padding: 1rem 1.5rem; }
+    nav { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 6rem 2rem 3rem; }
+    .hero-right { min-height: 300px; }
+    .services { padding: 5rem 1.5rem; }
+    .section-header { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .calc-section { grid-template-columns: 1fr; padding: 5rem 1.5rem; }
+    .faq-section { padding: 5rem 1.5rem; }
+    .cta-banner { padding: 5rem 1.5rem; }
+    footer { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 2rem; }
+    .footer-bottom { padding: 1.5rem; flex-direction: column; gap: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">ADV<span>Trabalhista</span>.net</div>
+  <nav>
+    <a href="#ferramentas">Ferramentas</a>
+    <a href="#calcular">Calculadora</a>
+    <a href="#duvidas">Dúvidas</a>
+    <a href="#calcular" class="nav-cta">Calcule Grátis</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="eyebrow">Direito do Trabalhador</div>
+    <h1>Conheça seus <em>direitos</em> antes de assinar qualquer coisa</h1>
+    <p class="hero-desc">Ferramentas gratuitas para calcular verbas rescisórias, gerar documentos e entender seus direitos trabalhistas em minutos.</p>
+    <div class="hero-actions">
+      <a href="#calcular" class="btn-primary">Calcular rescisão</a>
+      <a href="#duvidas" class="btn-ghost">Ver dúvidas frequentes</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <svg class="hero-illustration" viewBox="0 0 340 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Scales of Justice simplified -->
+      <circle cx="170" cy="170" r="130" stroke="rgba(200,146,58,0.12)" stroke-width="1"/>
+      <circle cx="170" cy="170" r="90" stroke="rgba(200,146,58,0.08)" stroke-width="1"/>
+      <!-- Pillar -->
+      <rect x="167" y="80" width="6" height="180" fill="rgba(200,146,58,0.5)"/>
+      <!-- Top bar -->
+      <rect x="90" y="100" width="160" height="5" rx="2" fill="rgba(200,146,58,0.7)"/>
+      <!-- Left chain -->
+      <line x1="110" y1="105" x2="100" y2="155" stroke="rgba(200,146,58,0.5)" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <!-- Right chain -->
+      <line x1="230" y1="105" x2="240" y2="145" stroke="rgba(200,146,58,0.5)" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <!-- Left pan -->
+      <path d="M75 155 Q100 180 125 155" stroke="rgba(200,146,58,0.8)" stroke-width="2" fill="none"/>
+      <line x1="75" y1="155" x2="125" y2="155" stroke="rgba(200,146,58,0.4)" stroke-width="1"/>
+      <!-- Right pan (slightly lower) -->
+      <path d="M215 145 Q240 175 265 145" stroke="rgba(200,146,58,0.8)" stroke-width="2" fill="none"/>
+      <line x1="215" y1="145" x2="265" y2="145" stroke="rgba(200,146,58,0.4)" stroke-width="1"/>
+      <!-- Base -->
+      <rect x="140" y="258" width="60" height="6" rx="1" fill="rgba(200,146,58,0.4)"/>
+      <rect x="150" y="252" width="40" height="8" rx="1" fill="rgba(200,146,58,0.3)"/>
+      <!-- Decorative rings -->
+      <circle cx="100" cy="155" r="8" stroke="rgba(200,146,58,0.3)" stroke-width="1" fill="none"/>
+      <circle cx="240" cy="145" r="8" stroke="rgba(200,146,58,0.3)" stroke-width="1" fill="none"/>
+      <!-- Stars / accents -->
+      <circle cx="120" cy="200" r="2" fill="rgba(200,146,58,0.3)"/>
+      <circle cx="220" cy="220" r="2" fill="rgba(200,146,58,0.3)"/>
+      <circle cx="80" cy="130" r="1.5" fill="rgba(200,146,58,0.2)"/>
+      <circle cx="260" cy="200" r="1.5" fill="rgba(200,146,58,0.2)"/>
+      <!-- Text -->
+      <text x="170" y="310" text-anchor="middle" font-family="Georgia, serif" font-size="9" letter-spacing="3" fill="rgba(200,146,58,0.4)">JUSTITIA</text>
+    </svg>
+    <div class="hero-stat">
+      <span class="hero-stat-num">CLT</span>
+      <span class="hero-stat-label">Seus direitos garantidos</span>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">Aviso Prévio Indenizado</span>
+    <span class="ticker-item">FGTS + Multa de 40%</span>
+    <span class="ticker-item">13º Salário Proporcional</span>
+    <span class="ticker-item">Férias + 1/3 Constitucional</span>
+    <span class="ticker-item">Saldo de Salário</span>
+    <span class="ticker-item">Horas Extras</span>
+    <span class="ticker-item">Adicional Noturno</span>
+    <span class="ticker-item">Aviso Prévio Indenizado</span>
+    <span class="ticker-item">FGTS + Multa de 40%</span>
+    <span class="ticker-item">13º Salário Proporcional</span>
+    <span class="ticker-item">Férias + 1/3 Constitucional</span>
+    <span class="ticker-item">Saldo de Salário</span>
+    <span class="ticker-item">Horas Extras</span>
+    <span class="ticker-item">Adicional Noturno</span>
+  </div>
+</div>
+
+<!-- SERVICES / INTERACTIVE TOOLS -->
+<section class="services" id="ferramentas">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label">Ferramentas gratuitas</div>
+      <h2>Use agora, sem cadastro</h2>
+    </div>
+    <p class="section-desc">Cinco ferramentas reais e funcionando. Escolha ao lado e calcule na hora.</p>
+  </div>
+
+  <div class="tools-wrapper reveal">
+    <!-- TABS -->
+    <div class="tools-tabs">
+      <div class="tool-tab active" onclick="openTool('rescisao')">
+        <span class="tool-tab-icon">⚖️</span>
+        <span class="tool-tab-name">Rescisão</span>
+        <span class="tool-tab-desc">Verbas a receber</span>
+      </div>
+      <div class="tool-tab" onclick="openTool('horasextras')">
+        <span class="tool-tab-icon">⏱️</span>
+        <span class="tool-tab-name">Horas Extras</span>
+        <span class="tool-tab-desc">50% e 100%</span>
+      </div>
+      <div class="tool-tab" onclick="openTool('ferias')">
+        <span class="tool-tab-icon">🌴</span>
+        <span class="tool-tab-name">Férias</span>
+        <span class="tool-tab-desc">Valor + 1/3</span>
+      </div>
+      <div class="tool-tab" onclick="openTool('fgts')">
+        <span class="tool-tab-icon">🏦</span>
+        <span class="tool-tab-name">FGTS</span>
+        <span class="tool-tab-desc">Saldo estimado</span>
+      </div>
+      <div class="tool-tab" onclick="openTool('carta')">
+        <span class="tool-tab-icon">📄</span>
+        <span class="tool-tab-name">Carta de Demissão</span>
+        <span class="tool-tab-desc">Gerar documento</span>
+      </div>
+    </div>
+
+    <!-- PANEL 1: Rescisão -->
+    <div class="tools-panel active" id="panel-rescisao">
+      <div class="tool-title">Calculadora de Rescisão</div>
+      <div class="tool-subtitle">Informe seus dados e veja o total estimado de verbas rescisórias conforme a CLT.</div>
+      <div class="tool-grid">
+        <div class="t-group">
+          <label>Salário bruto (R$)</label>
+          <input type="number" id="r-salario" placeholder="ex: 3000" min="0" step="0.01">
+        </div>
+        <div class="t-group">
+          <label>Tipo de demissão</label>
+          <select id="r-tipo">
+            <option value="sem_justa">Sem justa causa</option>
+            <option value="justa">Por justa causa</option>
+            <option value="pedido">Pedido de demissão</option>
+            <option value="acordo">Acordo mútuo (484-A)</option>
+          </select>
+        </div>
+        <div class="t-group">
+          <label>Anos trabalhados</label>
+          <input type="number" id="r-anos" placeholder="ex: 2" min="0">
+        </div>
+        <div class="t-group">
+          <label>Meses adicionais</label>
+          <input type="number" id="r-meses" placeholder="ex: 7" min="0" max="11">
+        </div>
+        <div class="t-group">
+          <label>Dias do mês atual trabalhados</label>
+          <input type="number" id="r-dias" placeholder="ex: 15" min="0" max="31">
+        </div>
+        <div class="t-group">
+          <label>Saldo FGTS acumulado (R$)</label>
+          <input type="number" id="r-fgts" placeholder="ex: 5000 (opcional)" min="0">
+        </div>
+      </div>
+      <button class="tool-btn" onclick="calcRescisao()">Calcular rescisão →</button>
+      <div class="tool-result" id="res-rescisao">
+        <div class="tool-result-label">Total estimado a receber</div>
+        <div class="tool-result-value" id="res-rescisao-total"></div>
+        <div class="tool-breakdown" id="res-rescisao-bd"></div>
+      </div>
+    </div>
+
+    <!-- PANEL 2: Horas Extras -->
+    <div class="tools-panel" id="panel-horasextras">
+      <div class="tool-title">Calculadora de Horas Extras</div>
+      <div class="tool-subtitle">Calcula o valor das suas horas extras com os percentuais corretos pela CLT: 50% em dias úteis, 100% em domingos e feriados.</div>
+      <div class="tool-grid">
+        <div class="t-group">
+          <label>Salário bruto (R$)</label>
+          <input type="number" id="he-salario" placeholder="ex: 2500" min="0">
+        </div>
+        <div class="t-group">
+          <label>Horas trabalhadas por dia</label>
+          <select id="he-jornada">
+            <option value="8">8h (padrão CLT)</option>
+            <option value="6">6h (turnos especiais)</option>
+            <option value="4">4h (meio período)</option>
+          </select>
+        </div>
+        <div class="t-group">
+          <label>Horas extras em dias úteis</label>
+          <input type="number" id="he-uteis" placeholder="ex: 10" min="0" step="0.5">
+        </div>
+        <div class="t-group">
+          <label>Horas extras em domingos/feriados</label>
+          <input type="number" id="he-feriados" placeholder="ex: 4" min="0" step="0.5">
+        </div>
+        <div class="t-group">
+          <label>Meses a calcular</label>
+          <input type="number" id="he-meses" placeholder="ex: 1" min="1" value="1">
+        </div>
+      </div>
+      <button class="tool-btn" onclick="calcHorasExtras()">Calcular horas extras →</button>
+      <div class="tool-result" id="res-he">
+        <div class="tool-result-label">Total de horas extras a receber</div>
+        <div class="tool-result-value" id="res-he-total"></div>
+        <div class="tool-breakdown" id="res-he-bd"></div>
+      </div>
+    </div>
+
+    <!-- PANEL 3: Férias -->
+    <div class="tools-panel" id="panel-ferias">
+      <div class="tool-title">Calculadora de Férias</div>
+      <div class="tool-subtitle">Calcule o valor das suas férias — simples ou proporcionais — já com o terço constitucional obrigatório.</div>
+      <div class="tool-grid">
+        <div class="t-group">
+          <label>Salário bruto (R$)</label>
+          <input type="number" id="f-salario" placeholder="ex: 3000" min="0">
+        </div>
+        <div class="t-group">
+          <label>Tipo de férias</label>
+          <select id="f-tipo">
+            <option value="completas">Férias completas (30 dias)</option>
+            <option value="proporcionais">Férias proporcionais</option>
+            <option value="vendidas">Férias + abono pecuniário (1/3 vendido)</option>
+          </select>
+        </div>
+        <div class="t-group" id="f-meses-group">
+          <label>Meses trabalhados no período aquisitivo</label>
+          <input type="number" id="f-meses" placeholder="ex: 8" min="1" max="12">
+        </div>
+        <div class="t-group">
+          <label>Faltas injustificadas no período</label>
+          <select id="f-faltas">
+            <option value="0">0 faltas — 30 dias de férias</option>
+            <option value="5">1–5 faltas — 30 dias de férias</option>
+            <option value="9">6–14 faltas — 24 dias de férias</option>
+            <option value="14">15–23 faltas — 18 dias de férias</option>
+            <option value="23">24–32 faltas — 12 dias de férias</option>
+          </select>
+        </div>
+      </div>
+      <button class="tool-btn" onclick="calcFerias()">Calcular férias →</button>
+      <div class="tool-result" id="res-ferias">
+        <div class="tool-result-label">Valor de férias a receber</div>
+        <div class="tool-result-value" id="res-ferias-total"></div>
+        <div class="tool-breakdown" id="res-ferias-bd"></div>
+      </div>
+    </div>
+
+    <!-- PANEL 4: FGTS -->
+    <div class="tools-panel" id="panel-fgts">
+      <div class="tool-title">Simulador de FGTS</div>
+      <div class="tool-subtitle">Estime o saldo do seu FGTS e veja quanto receberia em cada cenário de demissão.</div>
+      <div class="tool-grid">
+        <div class="t-group">
+          <label>Salário bruto (R$)</label>
+          <input type="number" id="fg-salario" placeholder="ex: 3000" min="0">
+        </div>
+        <div class="t-group">
+          <label>Tempo de serviço na empresa</label>
+          <select id="fg-tempo">
+            <option value="6">6 meses</option>
+            <option value="12">1 ano</option>
+            <option value="24">2 anos</option>
+            <option value="36">3 anos</option>
+            <option value="48">4 anos</option>
+            <option value="60">5 anos</option>
+            <option value="84">7 anos</option>
+            <option value="120">10 anos</option>
+          </select>
+        </div>
+        <div class="t-group span2">
+          <label>Saldo atual já na conta FGTS (R$) — opcional</label>
+          <input type="number" id="fg-saldo" placeholder="Se souber, informe (do app FGTS ou extrato)" min="0">
+        </div>
+      </div>
+      <button class="tool-btn" onclick="calcFGTS()">Simular FGTS →</button>
+      <div class="tool-result" id="res-fgts">
+        <div class="tool-result-label">Saldo estimado do FGTS</div>
+        <div class="tool-result-value" id="res-fgts-total"></div>
+        <div class="tool-breakdown" id="res-fgts-bd"></div>
+      </div>
+    </div>
+
+    <!-- PANEL 5: Carta de Demissão -->
+    <div class="tools-panel" id="panel-carta">
+      <div class="tool-title">Gerador de Carta de Demissão</div>
+      <div class="tool-subtitle">Preencha os dados e gere uma carta formal de pedido de demissão pronta para imprimir e assinar.</div>
+      <div class="tool-grid">
+        <div class="t-group">
+          <label>Seu nome completo</label>
+          <input type="text" id="c-nome" placeholder="ex: João da Silva">
+        </div>
+        <div class="t-group">
+          <label>CPF</label>
+          <input type="text" id="c-cpf" placeholder="ex: 000.000.000-00">
+        </div>
+        <div class="t-group">
+          <label>Nome da empresa</label>
+          <input type="text" id="c-empresa" placeholder="ex: Empresa ABC Ltda">
+        </div>
+        <div class="t-group">
+          <label>Cargo que ocupa</label>
+          <input type="text" id="c-cargo" placeholder="ex: Assistente Administrativo">
+        </div>
+        <div class="t-group">
+          <label>Data de admissão</label>
+          <input type="date" id="c-admissao">
+        </div>
+        <div class="t-group">
+          <label>Último dia de trabalho</label>
+          <input type="date" id="c-ultimo">
+        </div>
+        <div class="t-group">
+          <label>Cidade</label>
+          <input type="text" id="c-cidade" placeholder="ex: São Paulo - SP">
+        </div>
+        <div class="t-group">
+          <label>Deseja cumprir aviso prévio?</label>
+          <select id="c-aviso">
+            <option value="sim">Sim, desejo cumprir o aviso prévio</option>
+            <option value="nao">Não, solicito dispensa do aviso</option>
+          </select>
+        </div>
+      </div>
+      <button class="tool-btn" onclick="gerarCarta()">Gerar carta →</button>
+      <div class="carta-output" id="carta-texto">
+        <button class="copy-btn" id="copy-btn" onclick="copiarCarta()">Copiar</button>
+        <span id="carta-conteudo"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="calc-section" id="calcular">
+  <div class="calc-left reveal">
+    <div class="section-label">Calcule agora</div>
+    <h2>Quanto você tem direito a receber?</h2>
+    <p class="section-desc">Nossa calculadora usa as tabelas e percentuais atualizados da CLT. O resultado é uma estimativa — para valores exatos, consulte um advogado.</p>
+  </div>
+  <div class="calc-box reveal">
+    <h3>Calculadora de Rescisão</h3>
+    <div class="form-group">
+      <label>Salário bruto (R$)</label>
+      <input type="number" id="salario" placeholder="ex: 2.500,00" min="0" step="0.01">
+    </div>
+    <div class="form-group">
+      <label>Tempo de serviço</label>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem">
+        <input type="number" id="anos" placeholder="Anos" min="0">
+        <input type="number" id="meses" placeholder="Meses" min="0" max="11">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Tipo de demissão</label>
+      <select id="tipo">
+        <option value="sem_justa">Demitido sem justa causa</option>
+        <option value="justa">Demitido por justa causa</option>
+        <option value="pedido">Pedido de demissão</option>
+        <option value="acordo">Acordo mútuo (art. 484-A)</option>
+      </select>
+    </div>
+    <button class="calc-btn" onclick="calcular()">Calcular meus direitos</button>
+
+    <div class="calc-result" id="resultado">
+      <div class="calc-result-label">Estimativa total a receber</div>
+      <div class="calc-result-value" id="total">R$ 0,00</div>
+      <div class="calc-result-breakdown" id="breakdown"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="duvidas">
+  <div class="section-header reveal">
+    <div class="section-label">Dúvidas frequentes</div>
+    <h2>Perguntas que todo trabalhador faz</h2>
+  </div>
+
+  <div class="faq-item reveal">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      Fui demitido sem justa causa. O que tenho direito?
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">
+      Na demissão sem justa causa você tem direito a: saldo de salário dos dias trabalhados, aviso prévio (trabalhado ou indenizado), 13º salário proporcional, férias proporcionais + 1/3 constitucional, e multa do FGTS de 40% sobre o saldo total do fundo. Também tem direito ao seguro-desemprego, desde que cumpra os requisitos mínimos de tempo de trabalho.
+    </div>
+  </div>
+
+  <div class="faq-item reveal">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      Posso ser demitido por justa causa sem motivo real?
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">
+      Não. A justa causa exige motivo grave e comprovado, previsto no art. 482 da CLT (desídia, insubordinação, embriaguez, etc.). O empregador precisa documentar a falta. Se você foi demitido por justa causa sem motivo legítimo, pode contestar na Justiça do Trabalho e converter para dispensa sem justa causa, recebendo todas as verbas correspondentes.
+    </div>
+  </div>
+
+  <div class="faq-item reveal">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      O que é o aviso prévio proporcional?
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">
+      Pela Lei 12.506/2011, o aviso prévio é de 30 dias + 3 dias por ano de serviço completo, até o limite de 90 dias. Então quem trabalhou 1 ano tem 33 dias, 2 anos tem 36 dias, e assim por diante. Se o empregador não quiser que você trabalhe no aviso, ele deve pagar o valor correspondente a esses dias.
+    </div>
+  </div>
+
+  <div class="faq-item reveal">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      Posso sacar o FGTS quando pedi demissão?
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">
+      No pedido de demissão, você NÃO tem direito ao saque do FGTS nem à multa de 40%. O FGTS fica bloqueado. Você só pode sacá-lo em situações específicas: aposentadoria, compra de imóvel, doenças graves, ou se ficar 3 anos desempregado. A exceção é o acordo mútuo (art. 484-A), onde você pode sacar 80% do saldo e recebe metade da multa (20%).
+    </div>
+  </div>
+
+  <div class="faq-item reveal">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      Tenho direito ao seguro-desemprego?
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">
+      Sim, se você foi demitido sem justa causa e trabalhou formalmente pelo menos 12 meses nos últimos 18 meses (para o 1º pedido), 9 meses nos últimos 12 (2º pedido) ou 6 meses consecutivos (3º pedido em diante). O número de parcelas varia de 3 a 5, dependendo do tempo trabalhado. O prazo para solicitar é de 7 a 120 dias após a demissão.
+    </div>
+  </div>
+
+  <div class="faq-item reveal">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      Meu chefe não assinou minha carteira. E agora?
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">
+      Emprego sem carteira assinada é ilegal. Você pode fazer uma denúncia anônima ao Ministério do Trabalho ou entrar com uma ação trabalhista na Justiça do Trabalho para reconhecer o vínculo empregatício. Com o reconhecimento, você recebe todos os direitos retroativos: FGTS, 13º, férias, e muito mais. Guarde provas como mensagens, fotos, testemunhas e holerites.
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <h2>Não deixe nenhum direito passar</h2>
+  <p>Use nossas ferramentas gratuitas e descubra agora quanto você tem a receber.</p>
+  <a href="#calcular" class="btn-white">Calcular gratuitamente</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <span class="logo">ADV<span>Trabalhista</span>.net</span>
+    <p>Informação trabalhista clara e acessível para todo trabalhador brasileiro. Não somos um escritório de advocacia — somos uma ferramenta de informação.</p>
+  </div>
+  <div>
+    <h4>Ferramentas</h4>
+    <a href="#calcular">Calculadora de Rescisão</a>
+    <a href="#">Calculadora de Horas Extras</a>
+    <a href="#">Calculadora de Férias</a>
+    <a href="#">Gerador de Documentos</a>
+  </div>
+  <div>
+    <h4>Informação</h4>
+    <a href="#">Guia de Direitos</a>
+    <a href="#duvidas">Dúvidas Frequentes</a>
+    <a href="#">Política de Privacidade</a>
+    <a href="#">Sobre o Site</a>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>© 2025 advtrabalhista.net — Informação, não assessoria jurídica.</span>
+  <span>Feito para o trabalhador brasileiro 🇧🇷</span>
+</div>
+
+<script>
+const fmt = v => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+const fmtN = v => v.toFixed(1).replace('.', ',');
+
+// ── TABS ──
+function openTool(id) {
+  document.querySelectorAll('.tool-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tools-panel').forEach(p => p.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  document.getElementById('panel-' + id).classList.add('active');
+}
+
+function showResult(id, total, items) {
+  const el = document.getElementById(id);
+  document.getElementById(id + '-total').textContent = fmt(total);
+  document.getElementById(id + '-bd').innerHTML =
+    items.map(i => `<div class="tb-item"><strong>${fmt(i.v)}</strong>${i.l}</div>`).join('');
+  el.classList.add('show');
+}
+
+// ── 1. RESCISÃO ──
+function calcRescisao() {
+  const sal = parseFloat(document.getElementById('r-salario').value) || 0;
+  const anos = parseInt(document.getElementById('r-anos').value) || 0;
+  const meses = parseInt(document.getElementById('r-meses').value) || 0;
+  const dias = parseInt(document.getElementById('r-dias').value) || 15;
+  const fgtsMan = parseFloat(document.getElementById('r-fgts').value) || 0;
+  const tipo = document.getElementById('r-tipo').value;
+  if (!sal) { alert('Informe o salário bruto.'); return; }
+
+  const totalMeses = anos * 12 + meses;
+  const diasAviso = Math.min(30 + anos * 3, 90);
+  const aviso = (sal / 30) * diasAviso;
+  const saldo = (sal / 30) * dias;
+  const treze = (sal / 12) * (meses || 1);
+  const ferias = (sal / 12) * (meses || 1);
+  const terco = ferias / 3;
+  const fgtsBase = fgtsMan || (sal * 0.08 * totalMeses);
+  const multa40 = fgtsBase * 0.4;
+  const multa20 = fgtsBase * 0.2;
+
+  let total = saldo;
+  let items = [{ l: 'Saldo de Salário', v: saldo }];
+
+  if (tipo === 'sem_justa') {
+    items.push({ l: `Aviso Prévio (${diasAviso} dias)`, v: aviso });
+    items.push({ l: '13º Proporcional', v: treze });
+    items.push({ l: 'Férias Proporcionais', v: ferias });
+    items.push({ l: '1/3 Constitucional', v: terco });
+    items.push({ l: 'Multa FGTS (40%)', v: multa40 });
+    total += aviso + treze + ferias + terco + multa40;
+  } else if (tipo === 'justa') {
+    items.push({ l: '13º Proporcional', v: treze });
+    total += treze;
+    items.push({ l: 'Férias Proporcionais + 1/3', v: ferias + terco });
+    total += ferias + terco;
+  } else if (tipo === 'pedido') {
+    items.push({ l: '13º Proporcional', v: treze });
+    items.push({ l: 'Férias Proporcionais', v: ferias });
+    items.push({ l: '1/3 Constitucional', v: terco });
+    total += treze + ferias + terco;
+  } else if (tipo === 'acordo') {
+    items.push({ l: 'Aviso Prévio (50%)', v: aviso / 2 });
+    items.push({ l: '13º Proporcional', v: treze });
+    items.push({ l: 'Férias + 1/3', v: ferias + terco });
+    items.push({ l: 'Multa FGTS (20%)', v: multa20 });
+    total += aviso / 2 + treze + ferias + terco + multa20;
+  }
+
+  showResult('res-rescisao', total, items);
+}
+
+// ── 2. HORAS EXTRAS ──
+function calcHorasExtras() {
+  const sal = parseFloat(document.getElementById('he-salario').value) || 0;
+  const jornada = parseInt(document.getElementById('he-jornada').value);
+  const horasUteis = parseFloat(document.getElementById('he-uteis').value) || 0;
+  const horasFeriado = parseFloat(document.getElementById('he-feriados').value) || 0;
+  const meses = parseInt(document.getElementById('he-meses').value) || 1;
+  if (!sal) { alert('Informe o salário bruto.'); return; }
+
+  const diasMes = 30;
+  const horasMes = jornada * diasMes; // horas mensais aproximadas
+  const valorHora = sal / horasMes;
+  const adicional50 = valorHora * 1.5;
+  const adicional100 = valorHora * 2.0;
+
+  const totalUteis = horasUteis * adicional50 * meses;
+  const totalFeriado = horasFeriado * adicional100 * meses;
+  const total = totalUteis + totalFeriado;
+
+  showResult('res-he', total, [
+    { l: `${fmtN(horasUteis * meses)}h úteis × ${fmt(adicional50)}/h`, v: totalUteis },
+    { l: `${fmtN(horasFeriado * meses)}h feriados × ${fmt(adicional100)}/h`, v: totalFeriado },
+    { l: `Valor da hora normal`, v: valorHora },
+  ]);
+}
+
+// ── 3. FÉRIAS ──
+function calcFerias() {
+  const sal = parseFloat(document.getElementById('f-salario').value) || 0;
+  const tipo = document.getElementById('f-tipo').value;
+  const meses = parseInt(document.getElementById('f-meses').value) || 12;
+  const faltas = parseInt(document.getElementById('f-faltas').value);
+  if (!sal) { alert('Informe o salário bruto.'); return; }
+
+  // Dias de férias conforme faltas
+  const diasMap = { 0: 30, 5: 30, 9: 24, 14: 18, 23: 12 };
+  const diasFerias = diasMap[faltas] || 30;
+
+  let base, terco, abono, items = [], total = 0;
+
+  if (tipo === 'completas') {
+    base = sal;
+    terco = sal / 3;
+    total = base + terco;
+    items = [
+      { l: `Férias (${diasFerias} dias)`, v: base },
+      { l: '1/3 Constitucional', v: terco },
+    ];
+  } else if (tipo === 'proporcionais') {
+    base = (sal / 12) * meses;
+    terco = base / 3;
+    total = base + terco;
+    items = [
+      { l: `Férias proporcionais (${meses}/12)`, v: base },
+      { l: '1/3 Constitucional', v: terco },
+    ];
+  } else if (tipo === 'vendidas') {
+    // 20 dias gozados + 10 dias vendidos (abono)
+    const diasGozados = 20;
+    const diasVendidos = 10;
+    base = (sal / 30) * diasGozados;
+    abono = (sal / 30) * diasVendidos;
+    terco = (base + abono) / 3;
+    total = base + abono + terco;
+    items = [
+      { l: `Férias gozadas (${diasGozados} dias)`, v: base },
+      { l: `Abono pecuniário (${diasVendidos} dias)`, v: abono },
+      { l: '1/3 Constitucional', v: terco },
+    ];
+  }
+
+  showResult('res-ferias', total, items);
+}
+
+// ── 4. FGTS ──
+function calcFGTS() {
+  const sal = parseFloat(document.getElementById('fg-salario').value) || 0;
+  const tempo = parseInt(document.getElementById('fg-tempo').value);
+  const saldoReal = parseFloat(document.getElementById('fg-saldo').value) || 0;
+  if (!sal) { alert('Informe o salário bruto.'); return; }
+
+  const deposito = sal * 0.08;
+  const saldoEstimado = saldoReal || (deposito * tempo);
+  const multa40 = saldoEstimado * 0.4;
+  const multa20 = saldoEstimado * 0.2;
+
+  document.getElementById('res-fgts-total').textContent = fmt(saldoEstimado);
+  document.getElementById('res-fgts-bd').innerHTML = `
+    <div class="tb-item"><strong>${fmt(deposito)}</strong>Depósito mensal (8%)</div>
+    <div class="tb-item"><strong>${fmt(multa40)}</strong>Multa por demissão s/ justa causa (40%)</div>
+    <div class="tb-item"><strong>${fmt(multa20)}</strong>Multa por acordo mútuo (20%)</div>
+    <div class="tb-item"><strong>${fmt(saldoEstimado + multa40)}</strong>Total (saldo + multa 40%)</div>
+  `;
+  document.getElementById('res-fgts').classList.add('show');
+}
+
+// ── 5. CARTA DE DEMISSÃO ──
+function gerarCarta() {
+  const nome = document.getElementById('c-nome').value.trim();
+  const cpf = document.getElementById('c-cpf').value.trim();
+  const empresa = document.getElementById('c-empresa').value.trim();
+  const cargo = document.getElementById('c-cargo').value.trim();
+  const admissao = document.getElementById('c-admissao').value;
+  const ultimo = document.getElementById('c-ultimo').value;
+  const cidade = document.getElementById('c-cidade').value.trim();
+  const aviso = document.getElementById('c-aviso').value;
+
+  if (!nome || !empresa || !cargo) { alert('Preencha ao menos nome, empresa e cargo.'); return; }
+
+  const hoje = new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+  const admFormatado = admissao ? new Date(admissao + 'T12:00').toLocaleDateString('pt-BR') : '___/___/______';
+  const ultimoFormatado = ultimo ? new Date(ultimo + 'T12:00').toLocaleDateString('pt-BR') : '___/___/______';
+
+  const avisoTexto = aviso === 'sim'
+    ? 'Manifesto meu interesse em cumprir o aviso prévio de 30 (trinta) dias, conforme previsto na Consolidação das Leis do Trabalho.'
+    : 'Solicito, respeitosamente, a dispensa do cumprimento do aviso prévio, ficando a cargo da empresa a decisão sobre o período indenizado.';
+
+  const carta = `${cidade ? cidade + ', ' : ''}${hoje}
+
+
+Ao Departamento de Recursos Humanos
+${empresa}
+
+
+Assunto: Pedido de Demissão
+
+
+Eu, ${nome || '___________________'}${cpf ? ', CPF nº ' + cpf : ''}, ocupante do cargo de ${cargo || '___________________'}, admitido(a) em ${admFormatado}, venho, por meio desta, comunicar formalmente meu pedido de demissão desta empresa, a partir de ${ultimoFormatado}.
+
+Declaro que esta decisão é de caráter voluntário e definitivo, não havendo qualquer coação ou pressão por parte da empresa. Agradeço pela oportunidade de crescimento profissional proporcionada durante o período em que estive à disposição da equipe.
+
+${avisoTexto}
+
+Coloco-me à disposição para auxiliar no processo de transição e na transferência das minhas responsabilidades ao sucessor designado.
+
+Atenciosamente,
+
+
+_____________________________________________
+${nome || '___________________'}
+${cpf ? 'CPF: ' + cpf : ''}
+${cargo || '___________________'}`;
+
+  document.getElementById('carta-conteudo').textContent = carta;
+  document.getElementById('carta-texto').classList.add('show');
+  document.getElementById('copy-btn').textContent = 'Copiar';
+  document.getElementById('copy-btn').classList.remove('copied');
+}
+
+function copiarCarta() {
+  const texto = document.getElementById('carta-conteudo').textContent;
+  navigator.clipboard.writeText(texto).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'Copiado ✓';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('copied'); }, 2500);
+  });
+}
+
+// ── FAQ ──
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+// ── SCROLL REVEAL ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
