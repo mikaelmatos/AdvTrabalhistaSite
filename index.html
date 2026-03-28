@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<link rel="icon" type="image/png" href="favicon.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ADV Trabalhista — Seus Direitos, Explicados</title>
@@ -30,6 +31,43 @@
     font-weight: 300;
     overflow-x: hidden;
   }
+
+#roque-systems {
+  font-size: 12px;
+  font-weight: bold;
+  text-decoration: none;
+
+  background: linear-gradient(
+    90deg,
+    #001f3f,
+    #004080,
+    #0099ff,
+    #00e5ff,
+    #0099ff,
+    #004080,
+    #001f3f
+  );
+
+  background-size: 300% 100%;
+  animation: flow 6s linear infinite;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes flow {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes flow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
 
   /* ── NOISE TEXTURE OVERLAY ── */
   body::before {
@@ -925,7 +963,6 @@
       <div class="section-label">Ferramentas gratuitas</div>
       <h2>Use agora, sem cadastro</h2>
     </div>
-    <p class="section-desc">Cinco ferramentas reais e funcionando. Escolha ao lado e calcule na hora.</p>
   </div>
 
   <div class="tools-wrapper reveal">
@@ -1301,7 +1338,7 @@
 </footer>
 <div class="footer-bottom">
   <span>© 2025 advtrabalhista.net — Informação, não assessoria jurídica.</span>
-  <span>Feito para o trabalhador brasileiro 🇧🇷</span>
+  <span>Feito por <a href="https://roquesystems.com?ref=advtrabalhista" id="roque-systems" target="_blank">Roque Systems</a> para o trabalhador brasileiro 🇧🇷</span>
 </div>
 
 <script>
